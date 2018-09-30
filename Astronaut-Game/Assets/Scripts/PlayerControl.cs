@@ -6,6 +6,13 @@ using System;
 public class PlayerControl : MonoBehaviour
 {
 
+    private CharacterController myController;
+    private Animator anim;
+    private Vector3 moveDirection = Vector3.zero;
+    public float turnSpeed = 10.0f;
+
+
+
     // public vars
     public float mouseSensitivityX = 1;
     public float mouseSensitivityY = 1;
@@ -36,7 +43,13 @@ public class PlayerControl : MonoBehaviour
         Cursor.visible = false;
         cameraTransform = Camera.main.transform;
         rigidbody = GetComponent<Rigidbody>();
+
+
+
+        anim = GetComponent<Animator>();
+        //myController = GetComponent<CharacterController>();
     }
+
 
     void Update()
     {
@@ -51,6 +64,16 @@ public class PlayerControl : MonoBehaviour
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputY = Input.GetAxisRaw("Vertical");
 
+        
+        if (inputY != 0f || inputX != 0f)
+        {
+            anim.SetInteger("AnimationPar", 1);
+        } else
+        {
+            anim.SetInteger("AnimationPar", 0);
+        }
+
+        //transform.Rotate(0, inputX * turnSpeed * Time.deltaTime, 0);
 
         // sprint movement
         float moveSpeed;
@@ -68,17 +91,29 @@ public class PlayerControl : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space))
         {
+            
             if (levitateMana > 0)
             {
+
                 rigidbody.AddForce(transform.up * levForce);
                 levitateMana -= 1;
+                
             }
         }
         else
         {
-            if (levitateMana < 50)
+            if (levitateMana < 100)
             {
-                levitateMana += 0.5f;
+                levitateMana += 0.8f;
+            }
+        }
+
+        if (rigidbody.velocity.y > 0.05f || rigidbody.velocity.y < -0.05f)
+        {
+            anim.SetInteger("AnimationPar", 2);
+            if (Input.GetMouseButtonDown(1))
+            {
+                anim.SetInteger("AnimationPar", 3);
             }
         }
 
@@ -93,7 +128,7 @@ public class PlayerControl : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject shot = Instantiate(projectileTemplate, this.transform.position + this.transform.forward*3, Quaternion.identity);
+            GameObject shot = Instantiate(projectileTemplate, this.transform.position + this.transform.forward*3 + this.transform.up, Quaternion.identity);
             Rigidbody rb = shot.GetComponent<Rigidbody>();
             rb.velocity = (transform.forward * 23.5f); // + new Vector3(0, verticalLookRotation, 0);
         }

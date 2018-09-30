@@ -4,9 +4,6 @@ using System.Collections;
 [RequireComponent(typeof(GravityBody))]
 public class Player : MonoBehaviour {
 
-    private Animator anim;
-	private CharacterController controller;
-
 	public float speed = 600.0f;
 	public float turnSpeed = 400.0f;
 	private Vector3 moveDirection = Vector3.zero;
@@ -20,9 +17,14 @@ public class Player : MonoBehaviour {
     public float mouseSensitivityY = 1;
 
 
+    public CharacterController myController;
+    public Animator anim;
+
+
     void Start () {
-			controller = GetComponent <CharacterController>();
-			anim = gameObject.GetComponentInChildren<Animator>();
+
+			//controller = GetComponent <CharacterController>();
+			//anim = gameObject.GetComponentInChildren<Animator>();
 
             cameraTransform = Camera.main.transform;
     

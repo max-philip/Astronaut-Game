@@ -10,7 +10,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace>
     </RootNamespace>
-    <ProjectGuid>{8640AB1C-3DCE-6FA0-BDD0-35BE3F459F56}</ProjectGuid>
+    <ProjectGuid>{0EA8D685-970F-914D-22BB-4C6F5E4F4101}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -134,10 +134,10 @@
     <None Include="Assets\Imported Assets\LOWPOLY\LowPolySurvivalEssentials\LowPolyShaders\Shaders\LowPolyPBRShader.shader" />
     <None Include="Assets\Imported Assets\LOWPOLY\LowPolySurvivalEssentials\LowPolyShaders\Shaders\LowPolyUnlitShader.shader" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>C:/Users/Max Philip/Desktop/2018 Semester 2/COMP30019/Project_2/Graphics-Game/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/Max Philip/Desktop/2018 Semester 2/COMP30019/Project_2/Graphics-Game/Astronaut-Game/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/Max Philip/Desktop/2018 Semester 2/COMP30019/Project_2/Graphics-Game/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/Max Philip/Desktop/2018 Semester 2/COMP30019/Project_2/Graphics-Game/Astronaut-Game/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -335,10 +335,10 @@
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="TextMeshPro-2017.3-Editor">
-      <HintPath>C:/Users/Max Philip/Desktop/2018 Semester 2/COMP30019/Project_2/Graphics-Game/Assets/TextMesh Pro/Plugins/Editor DLL/TextMeshPro-2017.3-Editor.dll</HintPath>
+      <HintPath>C:/Users/Max Philip/Desktop/2018 Semester 2/COMP30019/Project_2/Graphics-Game/Astronaut-Game/Assets/TextMesh Pro/Plugins/Editor DLL/TextMeshPro-2017.3-Editor.dll</HintPath>
     </Reference>
     <Reference Include="TextMeshPro-2017.3-Runtime">
-      <HintPath>C:/Users/Max Philip/Desktop/2018 Semester 2/COMP30019/Project_2/Graphics-Game/Assets/TextMesh Pro/Plugins/Editor DLL/TextMeshPro-2017.3-Runtime.dll</HintPath>
+      <HintPath>C:/Users/Max Philip/Desktop/2018 Semester 2/COMP30019/Project_2/Graphics-Game/Astronaut-Game/Assets/TextMesh Pro/Plugins/Editor DLL/TextMeshPro-2017.3-Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/Max Philip/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>

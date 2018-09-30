@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour {
 
 	public void PlayGame()
     {
-        SceneManager.LoadSceneAsync("Scenes/DesertScene");
+        SceneManager.LoadSceneAsync("Scenes/Level1");
 
         //EditorSceneManager.OpenScene("Application.dataPath/Assets/Scenes/TestScene.unity", OpenSceneMode.Additive);
     }
