@@ -1,6 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Threading;
+using System;
+using System.Diagnostics;
+using System.Collections.Generic;
+using UnityEngine.UI;
+
 
 [RequireComponent(typeof(GravityBody))]
 public class PlayerControl : MonoBehaviour
@@ -10,6 +16,11 @@ public class PlayerControl : MonoBehaviour
     private Animator anim;
     private Vector3 moveDirection = Vector3.zero;
     public float turnSpeed = 10.0f;
+
+
+    private Stopwatch watch = new Stopwatch();
+    private Text timerText;
+    public bool cubesCollected = false;
 
 
 
@@ -48,11 +59,22 @@ public class PlayerControl : MonoBehaviour
 
         anim = GetComponent<Animator>();
         //myController = GetComponent<CharacterController>();
+
+
+        timerText = GameObject.Find("TimerText").GetComponent<Text>();
+        watch.Start();
     }
 
 
     void Update()
     {
+        if (!cubesCollected)
+        {
+            timerText.text = "Time Elapsed: " + (watch.Elapsed).ToString();
+        } else
+        {
+            watch.Stop();
+        }
 
         // Look rotation:
         transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * mouseSensitivityX);

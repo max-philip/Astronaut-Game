@@ -68,14 +68,15 @@
     <Compile Include="Assets\projectileLab\PlayerController.cs" />
     <Compile Include="Assets\projectileLab\projectileController.cs" />
     <Compile Include="Assets\Scripts\angleOrbit.cs" />
+    <Compile Include="Assets\Scripts\BoxScoring.cs" />
     <Compile Include="Assets\Scripts\Figure8.cs" />
     <Compile Include="Assets\Scripts\GRAVITY\GravityAttractor.cs" />
     <Compile Include="Assets\Scripts\GRAVITY\GravityBody.cs" />
     <Compile Include="Assets\Scripts\LevitateMana.cs" />
-    <Compile Include="Assets\Scripts\MoveForwardAndBackward.cs" />
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
+    <Compile Include="Assets\Scripts\UpDown.cs" />
     <Compile Include="Assets\Scripts\XAxisSpin.cs" />
-    <Compile Include="Assets\Scripts\YAxisSpin.cs" />
+    <Compile Include="Assets\Scripts\ZAxisSpin.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
