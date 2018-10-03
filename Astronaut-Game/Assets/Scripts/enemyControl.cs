@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class enemyControl : MonoBehaviour {
+public class EnemyControl : MonoBehaviour {
 
-    public float zoneRadius = 25f;
+    public float zoneRadius = 15f;
     public float speed = 8f;
 
     NavMeshAgent agent;
@@ -16,6 +16,10 @@ public class enemyControl : MonoBehaviour {
     Vector3 smoothMoveVelocity;
     Rigidbody rigidbody;
 
+    Vector3 currentWander = new Vector3(0, -60, 0);
+    float changeDirectionTime = 0.0f;
+
+    
 
 
     // Use this for initialization
@@ -35,6 +39,9 @@ public class enemyControl : MonoBehaviour {
             //agent.SetDestination(attackTarget.position);
 
             moveToTarget();
+        } else
+        {
+            wander();
         }
 	}
 
@@ -57,5 +64,39 @@ public class enemyControl : MonoBehaviour {
         */
 
         transform.position = Vector3.MoveTowards(transform.position, attackTarget.position, Time.deltaTime*speed);
+    }
+
+    private void wander()
+    {
+        
+        Vector3[] AIwanders = new Vector3[] { new Vector3(0, 60, 0), new Vector3(0, -60, 0) ,
+                                        new Vector3(60, 0, 0), new Vector3(-60, 0, 0),
+                                        new Vector3(0, 0, 60), new Vector3(0, 0, -60)};
+
+        
+        /*
+        Vector3[] AIwanders = new Vector3[] { transform.forward*3, transform.right*3,
+                                        -transform.forward*3, -transform.right*3 };
+        */
+
+        float wanderSpeed;
+        float wanderDist = Vector3.Distance(transform.position, currentWander);
+
+        if (Time.time > changeDirectionTime)
+        {
+            currentWander = AIwanders[Random.Range(0, AIwanders.Length)];
+            changeDirectionTime += Random.Range(1f, 2.5f);
+        }
+        
+        if (wanderDist > 60)
+        {
+            wanderSpeed = speed / 2;
+        } else
+        {
+            wanderSpeed = speed / 4;
+        }
+
+        transform.position = Vector3.MoveTowards(transform.position, currentWander, Time.deltaTime * wanderSpeed);
+
     }
 }

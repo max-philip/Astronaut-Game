@@ -69,7 +69,8 @@
     <Compile Include="Assets\projectileLab\projectileController.cs" />
     <Compile Include="Assets\Scripts\angleOrbit.cs" />
     <Compile Include="Assets\Scripts\BoxScoring.cs" />
-    <Compile Include="Assets\Scripts\enemyControl.cs" />
+    <Compile Include="Assets\Scripts\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\EnemyControl.cs" />
     <Compile Include="Assets\Scripts\Figure8.cs" />
     <Compile Include="Assets\Scripts\GRAVITY\GravityAttractor.cs" />
     <Compile Include="Assets\Scripts\GRAVITY\GravityBody.cs" />
