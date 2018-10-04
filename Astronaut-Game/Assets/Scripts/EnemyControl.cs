@@ -5,11 +5,13 @@ using UnityEngine.AI;
 
 public class EnemyControl : MonoBehaviour {
 
-    public float zoneRadius = 15f;
+    public float zoneRadius = 20f;
     public float speed = 8f;
 
     NavMeshAgent agent;
-    public Transform attackTarget;
+    //public Transform attackTarget;
+    GameObject attackTarget;
+    Transform targetTrans;
 
 
     Vector3 moveAmount;
@@ -27,12 +29,15 @@ public class EnemyControl : MonoBehaviour {
 
         agent = this.GetComponent<NavMeshAgent>();
         rigidbody = this.GetComponent<Rigidbody>();
-	}
+
+        attackTarget = GameObject.Find("Stylized Astronaut");
+        targetTrans = attackTarget.transform;
+    }
 	
 	// Update is called once per frame
 	void Update () {
 
-        float dist = Vector3.Distance(transform.position, attackTarget.position);
+        float dist = Vector3.Distance(transform.position, targetTrans.position);
 
         if (dist <= zoneRadius && dist >= 3)
         {
@@ -42,6 +47,12 @@ public class EnemyControl : MonoBehaviour {
         } else
         {
             wander();
+        }
+
+        if (dist < 3)
+        {
+            global.health -= 1;
+            Debug.Log("damage");
         }
 	}
 
@@ -63,7 +74,8 @@ public class EnemyControl : MonoBehaviour {
         //rigidbody.MovePosition(rigidbody.position + localMove);
         */
 
-        transform.position = Vector3.MoveTowards(transform.position, attackTarget.position, Time.deltaTime*speed);
+        transform.position = Vector3.MoveTowards(transform.position, targetTrans.position, Time.deltaTime*speed);
+        transform.LookAt(targetTrans.position);
     }
 
     private void wander()
@@ -97,6 +109,7 @@ public class EnemyControl : MonoBehaviour {
         }
 
         transform.position = Vector3.MoveTowards(transform.position, currentWander, Time.deltaTime * wanderSpeed);
+        transform.LookAt(currentWander);
 
     }
 }

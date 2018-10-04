@@ -28,7 +28,7 @@ public class PlayerControl : MonoBehaviour
     public float mouseSensitivityX = 1;
     public float mouseSensitivityY = 1;
     public float speed = 6;
-    public float shiftMulti = 2;
+    public float shiftMulti = 1.5f;
     public float levForce = 5;
     public LayerMask groundedMask;
 
@@ -42,10 +42,6 @@ public class PlayerControl : MonoBehaviour
 
 
     public GameObject projectileTemplate;
-
-
-    public float levitateMana = 50;
-    public static event Action<float> LevitateManaChange;
 
 
     void Awake()
@@ -114,19 +110,19 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             
-            if (levitateMana > 0)
+            if (global.fuel > 0)
             {
 
                 rigidbody.AddForce(transform.up * levForce);
-                levitateMana -= 1;
+                global.fuel -= 1;
                 
             }
         }
         else
         {
-            if (levitateMana < 100)
+            if (global.fuel < 100)
             {
-                levitateMana += 0.8f;
+                global.fuel += 0.8f;
             }
         }
 
@@ -138,8 +134,6 @@ public class PlayerControl : MonoBehaviour
                 anim.SetInteger("AnimationPar", 3);
             }
         }
-
-        LevitateManaChange(levitateMana);
 
         /*
         if (Input.GetKeyDown(KeyCode.Space))
@@ -154,7 +148,6 @@ public class PlayerControl : MonoBehaviour
             Rigidbody rb = shot.GetComponent<Rigidbody>();
             rb.velocity = (transform.forward * 23.5f); // + new Vector3(0, verticalLookRotation, 0);
         }
-
 
     }
 

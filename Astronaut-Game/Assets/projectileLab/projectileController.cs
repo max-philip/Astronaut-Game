@@ -48,6 +48,6 @@ public class projectileController : MonoBehaviour {
 
     private void setCountText()
     {
-        countText.text = "Cubes Remaining: " + boxes.boxCount.ToString();
+        countText.text = "Enemies Remaining: " + boxes.boxCount.ToString();
     }
 }

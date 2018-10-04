@@ -59,10 +59,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\fantasySpider\FSP_ContinuousRotation.cs" />
     <Compile Include="Assets\Imported Assets\LOWPOLY\LowPolySurvivalEssentials\LowPolySurvivalEssentials\Example\Scripts\AnimatedFire.cs" />
     <Compile Include="Assets\Imported Assets\Stylized Astronaut\Character\Player.cs" />
     <Compile Include="Assets\Imported Assets\Stylized Astronaut\Character\ThirdPersonCamera.cs" />
     <Compile Include="Assets\Menu\MainMenu.cs" />
+    <Compile Include="Assets\Menu\RestartGame.cs" />
     <Compile Include="Assets\projectileLab\DestroyWhenParticlesFinished.cs" />
     <Compile Include="Assets\projectileLab\HealthManager.cs" />
     <Compile Include="Assets\projectileLab\PlayerController.cs" />
@@ -72,8 +74,10 @@
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\EnemyControl.cs" />
     <Compile Include="Assets\Scripts\Figure8.cs" />
+    <Compile Include="Assets\Scripts\global.cs" />
     <Compile Include="Assets\Scripts\GRAVITY\GravityAttractor.cs" />
     <Compile Include="Assets\Scripts\GRAVITY\GravityBody.cs" />
+    <Compile Include="Assets\Scripts\HealthBar.cs" />
     <Compile Include="Assets\Scripts\LevitateMana.cs" />
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\UpDown.cs" />
@@ -114,6 +118,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\cel shading\toonCOPY.shader" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />

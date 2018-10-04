@@ -7,7 +7,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
 
-	public void PlayGame()
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void PlayGame()
     {
         SceneManager.LoadSceneAsync("Scenes/Level1");
 
