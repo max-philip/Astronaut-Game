@@ -65,6 +65,7 @@
     <Compile Include="Assets\Imported Assets\Stylized Astronaut\Character\Player.cs" />
     <Compile Include="Assets\Imported Assets\Stylized Astronaut\Character\ThirdPersonCamera.cs" />
     <Compile Include="Assets\Menu\MainMenu.cs" />
+    <Compile Include="Assets\Menu\PauseMenu.cs" />
     <Compile Include="Assets\Menu\RestartGame.cs" />
     <Compile Include="Assets\projectileLab\DestroyWhenParticlesFinished.cs" />
     <Compile Include="Assets\projectileLab\HealthManager.cs" />
@@ -125,6 +126,7 @@
     <None Include="Assets\Shaders\rim07COPY.shader" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\Shaders\WaveShader.shader" />
     <None Include="Assets\HolyShift\readme.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />

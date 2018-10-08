@@ -17,8 +17,11 @@ public class global : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
-	}
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -31,6 +34,16 @@ public class global : MonoBehaviour {
         if (health <= 0)
         {
             SceneManager.LoadSceneAsync("Scenes/DeathScene");
+        }
+
+        if (PauseMenu.gamePaused)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        } else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 }

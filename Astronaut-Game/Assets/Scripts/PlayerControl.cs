@@ -46,8 +46,6 @@ public class PlayerControl : MonoBehaviour
 
     void Awake()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
         cameraTransform = Camera.main.transform;
         rigidbody = GetComponent<Rigidbody>();
 
@@ -64,6 +62,13 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
+
+        // No control over player if the game is paused
+        if (PauseMenu.gamePaused)
+        {
+            return;
+        }
+
         if (!cubesCollected)
         {
             timerText.text = "Time Elapsed: " + (watch.Elapsed).ToString();
