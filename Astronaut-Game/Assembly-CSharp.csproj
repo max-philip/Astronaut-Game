@@ -59,7 +59,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\fantasySpider\FSP_ContinuousRotation.cs" />
+    <Compile Include="Assets\HolyShift\Scripts\CheckForStandardAssets.cs" />
+    <Compile Include="Assets\Imported Assets\fantasySpider\FSP_ContinuousRotation.cs" />
     <Compile Include="Assets\Imported Assets\LOWPOLY\LowPolySurvivalEssentials\LowPolySurvivalEssentials\Example\Scripts\AnimatedFire.cs" />
     <Compile Include="Assets\Imported Assets\Stylized Astronaut\Character\Player.cs" />
     <Compile Include="Assets\Imported Assets\Stylized Astronaut\Character\ThirdPersonCamera.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Assets\Scripts\HealthBar.cs" />
     <Compile Include="Assets\Scripts\LevitateMana.cs" />
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
+    <Compile Include="Assets\Scripts\sunOrbit.cs" />
     <Compile Include="Assets\Scripts\UpDown.cs" />
     <Compile Include="Assets\Scripts\XAxisSpin.cs" />
     <Compile Include="Assets\Scripts\ZAxisSpin.cs" />
@@ -118,17 +120,22 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
-    <None Include="Assets\cel shading\toonCOPY.shader" />
+    <None Include="Assets\Shaders\toonCOPY.shader" />
+    <None Include="Assets\Shaders\extrudeCOPY.shader" />
+    <None Include="Assets\Shaders\rim07COPY.shader" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\HolyShift\readme.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
     <None Include="Assets\Imported Assets\Spaceship\Materials\2-sided.shader" />
+    <None Include="Assets\Shaders\shaderlabCOPY.shader" />
     <None Include="Assets\Imported Assets\LOWPOLY\Desert Pack\Materials\Shaders\Vertex_Color_Unlit.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\Imported Assets\LOWPOLY\Desert Pack\Materials\Shaders\Vertex_Color_Basic.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\HolyShift\Shaders\WaterInclude.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Oswald Bold - OFL.txt" />
@@ -139,10 +146,12 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\Shaders\waterCOPY.shader" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\Imported Assets\LOWPOLY\FreeLowPolyPack\FreeLowPolyPack\readme.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
     <None Include="Assets\Imported Assets\LOWPOLY\LowPolySurvivalEssentials\LowPolyShaders\Shaders\LowPolyPBRShader.shader" />
+    <None Include="Assets\Shaders\rim43COPY.shader" />
     <None Include="Assets\Imported Assets\LOWPOLY\LowPolySurvivalEssentials\LowPolyShaders\Shaders\LowPolyUnlitShader.shader" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/Max Philip/Desktop/2018 Semester 2/COMP30019/Project_2/Graphics-Game/Astronaut-Game/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

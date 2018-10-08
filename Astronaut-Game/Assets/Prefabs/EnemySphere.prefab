@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63a001e7cbf98ab409d4a2b8e943993e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoneRadius: 30
+  zoneRadius: 35
   speed: 17
 --- !u!114 &114893994265474834
 MonoBehaviour:
