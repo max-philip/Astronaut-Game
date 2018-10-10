@@ -7,40 +7,25 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class global : MonoBehaviour {
-
-    public static float health = 100f;
-    public static float fuel = 100f;
-
-    public static event Action<float> HealthChange;
-    public static event Action<float> JetChange;
+public class GameController : MonoBehaviour
+{
 
     // Use this for initialization
-    void Start () {
-
+    void Start()
+    {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
     }
-	
-	// Update is called once per frame
-	void Update () {
-        Debug.Log(health);
 
-        HealthChange(health);
-        JetChange(fuel);
-
-
-        if (health <= 0)
-        {
-            SceneManager.LoadSceneAsync("Scenes/DeathScene");
-        }
-
+    // Update is called once per frame
+    void Update()
+    {
         if (PauseMenu.gamePaused)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-        } else
+        }
+        else
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;

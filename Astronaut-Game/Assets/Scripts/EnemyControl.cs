@@ -30,7 +30,7 @@ public class EnemyControl : MonoBehaviour {
         agent = this.GetComponent<NavMeshAgent>();
         rigidbody = this.GetComponent<Rigidbody>();
 
-        attackTarget = GameObject.Find("Stylized Astronaut");
+        attackTarget = GameObject.Find("StylizedAstronaut");
         targetTrans = attackTarget.transform;
     }
 	
@@ -51,7 +51,7 @@ public class EnemyControl : MonoBehaviour {
 
         if (dist < 3)
         {
-            global.health -= 1;
+            GameObject.Find("StylizedAstronaut").GetComponent<PlayerControl>().reduceHealth(1);
             Debug.Log("damage");
         }
 	}
@@ -64,16 +64,6 @@ public class EnemyControl : MonoBehaviour {
 
     private void moveToTarget()
     {
-        /*
-        transform.LookAt(attackTarget);
-        Vector3 moveDir = transform.forward;
-        //Vector3 moveDir = new Vector3(moveX, 0, moveY).normalized;
-        Vector3 targetMoveAmount = moveDir * speed;
-        moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVelocity, .15f);
-        Vector3 localMove = transform.TransformDirection(moveAmount) * Time.fixedDeltaTime;
-        //rigidbody.MovePosition(rigidbody.position + localMove);
-        */
-
         transform.position = Vector3.MoveTowards(transform.position, targetTrans.position, Time.deltaTime*speed);
         transform.LookAt(targetTrans.position);
     }

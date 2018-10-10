@@ -10,11 +10,12 @@ public class MainMenu : MonoBehaviour {
     private void Start()
     {
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void PlayGame()
     {
-        SceneManager.LoadSceneAsync("Scenes/Level1");
+        SceneManager.LoadScene("Scenes/DesertLevel");
 
         //EditorSceneManager.OpenScene("Application.dataPath/Assets/Scenes/TestScene.unity", OpenSceneMode.Additive);
     }

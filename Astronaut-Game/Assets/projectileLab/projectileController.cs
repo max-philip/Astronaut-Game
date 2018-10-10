@@ -37,6 +37,8 @@ public class projectileController : MonoBehaviour {
             Debug.Log(boxes.boxCount);
             setCountText();
 
+            StatVariables.money += 10;
+
             if (boxes.boxCount == 0)
             {
                 PlayerControl myControl = GameObject.Find("Stylized Astronaut").GetComponent<PlayerControl>();

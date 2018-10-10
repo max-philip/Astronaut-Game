@@ -3,10 +3,10 @@ using System.Collections;
 using System;
 using System.Threading;
 using System;
-using System.Diagnostics;
+//using System.Diagnostics;
 using System.Collections.Generic;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(GravityBody))]
 public class PlayerControl : MonoBehaviour
@@ -18,11 +18,15 @@ public class PlayerControl : MonoBehaviour
     public float turnSpeed = 10.0f;
 
 
-    private Stopwatch watch = new Stopwatch();
+    //private Stopwatch watch = new Stopwatch();
     private Text timerText;
     public bool cubesCollected = false;
 
-
+    private float health = StatVariables.maxHealth;
+    private float fuel = StatVariables.maxFuel;
+    private Text HealthText;
+    private Text JetText;
+    private Text MoneyText;
 
     // public vars
     public float mouseSensitivityX = 1;
@@ -44,7 +48,7 @@ public class PlayerControl : MonoBehaviour
     public GameObject projectileTemplate;
 
 
-    void Awake()
+    void Start()
     {
         cameraTransform = Camera.main.transform;
         rigidbody = GetComponent<Rigidbody>();
@@ -56,7 +60,11 @@ public class PlayerControl : MonoBehaviour
 
 
         timerText = GameObject.Find("TimerText").GetComponent<Text>();
-        watch.Start();
+        //watch.Start();
+
+        HealthText = GameObject.Find("HealthText").GetComponent<Text>();
+        JetText = GameObject.Find("JetText").GetComponent<Text>();
+        MoneyText = GameObject.Find("MoneyText").GetComponent<Text>();
     }
 
 
@@ -71,10 +79,10 @@ public class PlayerControl : MonoBehaviour
 
         if (!cubesCollected)
         {
-            timerText.text = "Time Elapsed: " + (watch.Elapsed).ToString();
+            //timerText.text = "Time Elapsed: " + (watch.Elapsed).ToString();
         } else
         {
-            watch.Stop();
+            //watch.Stop();
         }
 
         // Look rotation:
@@ -82,6 +90,11 @@ public class PlayerControl : MonoBehaviour
         verticalLookRotation += Input.GetAxis("Mouse Y") * mouseSensitivityY;
         verticalLookRotation = Mathf.Clamp(verticalLookRotation, -25, -25);
         cameraTransform.localEulerAngles = Vector3.left * verticalLookRotation;
+
+        float distFromOrigin = Vector3.Distance(new Vector3(0, 0, 0), transform.position);
+
+        cameraTransform.localEulerAngles = 
+            new Vector3(distFromOrigin/2, cameraTransform.localEulerAngles.y, cameraTransform.localEulerAngles.z);
 
         // Calculate movement:
         float inputX = Input.GetAxisRaw("Horizontal");
@@ -115,20 +128,30 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             
-            if (global.fuel > 0)
+            if (fuel > 0)
             {
 
                 rigidbody.AddForce(transform.up * levForce);
-                global.fuel -= 1;
+                fuel -= 2;
                 
             }
         }
         else
         {
-            if (global.fuel < 100)
+            if (fuel < StatVariables.maxFuel)
             {
-                global.fuel += 0.8f;
+                fuel += 3;
             }
+
+            if (fuel > StatVariables.maxFuel)
+            {
+                fuel = StatVariables.maxFuel;
+            }
+        }
+
+        if (health <= 0)
+        {
+            SceneManager.LoadScene("Scenes/MainMenu");
         }
 
         if (rigidbody.velocity.y > 0.05f || rigidbody.velocity.y < -0.05f)
@@ -154,6 +177,19 @@ public class PlayerControl : MonoBehaviour
             rb.velocity = (transform.forward * 23.5f); // + new Vector3(0, verticalLookRotation, 0);
         }
 
+        writeHUD();
+    }
+
+    public void reduceHealth(int damage)
+    {
+        health -= damage;
+    }
+
+    private void writeHUD()
+    {
+        HealthText.text = "Health:   " + health.ToString() + " / " + StatVariables.maxHealth.ToString();
+        JetText.text = "Fuel:   " + fuel.ToString() + " / " + StatVariables.maxFuel.ToString();
+        MoneyText.text = "Money:   " + StatVariables.money.ToString();
     }
 
     void FixedUpdate()
