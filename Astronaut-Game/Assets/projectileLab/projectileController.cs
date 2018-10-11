@@ -1,26 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class projectileController : MonoBehaviour {
 
     public GameObject projectileExplosion;
 
-    private BoxScoring boxes;
-    private Text countText;
-
+    private GameObject gameController;
 
     // Use this for initialization
     void Start () {
-        boxes = GameObject.Find("CountText").GetComponent<BoxScoring>();
-        countText = GameObject.Find("CountText").GetComponent<Text>();
-        setCountText();
+        gameController = GameObject.Find("GameController");
     }
 	
 	// Update is called once per frame
 	void Update () {
-        //Destroy(this.gameObject, 10.0f);
+        Destroy(this.gameObject, 30.0f);
 
     }
 
@@ -32,24 +29,21 @@ public class projectileController : MonoBehaviour {
 
         if (other.gameObject.tag == "Destructible")
         {
-            Destroy(other.gameObject);
-            boxes.boxCount -= 1;
-            Debug.Log(boxes.boxCount);
-            setCountText();
 
-            StatVariables.money += 10;
+            other.gameObject.GetComponent<EnemyControl>().getDamaged(10);
 
-            if (boxes.boxCount == 0)
+            // Increase score for tutorial targets here - for BRAIN enemies, this is done in EnemyControl.cs
+            if (SceneManager.GetActiveScene().name == "Tutorial")
+            {
+                StatVariables.money += 5;
+            }
+
+            if (gameController.GetComponent<GameController>().getEnemyCount() == 0)
             {
                 PlayerControl myControl = GameObject.Find("Stylized Astronaut").GetComponent<PlayerControl>();
                 myControl.cubesCollected = true;
             }
 
         }
-    }
-
-    private void setCountText()
-    {
-        countText.text = "Enemies Remaining: " + boxes.boxCount.ToString();
     }
 }

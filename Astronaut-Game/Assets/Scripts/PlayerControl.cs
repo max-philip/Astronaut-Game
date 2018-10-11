@@ -92,9 +92,15 @@ public class PlayerControl : MonoBehaviour
         cameraTransform.localEulerAngles = Vector3.left * verticalLookRotation;
 
         float distFromOrigin = Vector3.Distance(new Vector3(0, 0, 0), transform.position);
-
-        cameraTransform.localEulerAngles = 
-            new Vector3(distFromOrigin/2, cameraTransform.localEulerAngles.y, cameraTransform.localEulerAngles.z);
+        if (SceneManager.GetActiveScene().name != "Tutorial")
+        {
+            cameraTransform.localEulerAngles =
+            new Vector3(distFromOrigin / 2, cameraTransform.localEulerAngles.y, cameraTransform.localEulerAngles.z);
+        } else
+        {
+            cameraTransform.localEulerAngles =
+            new Vector3(distFromOrigin, cameraTransform.localEulerAngles.y, cameraTransform.localEulerAngles.z);
+        }
 
         // Calculate movement:
         float inputX = Input.GetAxisRaw("Horizontal");
@@ -130,8 +136,14 @@ public class PlayerControl : MonoBehaviour
             
             if (fuel > 0)
             {
+                if (SceneManager.GetActiveScene().name != "Tutorial")
+                {
+                    rigidbody.AddForce(transform.up * levForce);
+                } else
+                {
+                    rigidbody.AddForce(transform.up * levForce * 1.2f);
+                }
 
-                rigidbody.AddForce(transform.up * levForce);
                 fuel -= 2;
                 
             }

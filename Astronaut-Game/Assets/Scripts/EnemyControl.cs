@@ -21,7 +21,11 @@ public class EnemyControl : MonoBehaviour {
     Vector3 currentWander = new Vector3(0, -60, 0);
     float changeDirectionTime = 0.0f;
 
-    
+    private int health = 30;
+
+    private GameObject gameController;
+
+
 
 
     // Use this for initialization
@@ -32,17 +36,37 @@ public class EnemyControl : MonoBehaviour {
 
         attackTarget = GameObject.Find("StylizedAstronaut");
         targetTrans = attackTarget.transform;
+
+        gameController = GameObject.Find("GameController");
+
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
+
+        Renderer rend = GetComponent<Renderer>();
+        //rend.material.shader = Shader.Find("_Color");
+
+        if (health >= 30)
+        {
+            rend.material.SetColor("_Color", Color.green);
+        } else if (health >= 15)
+        {
+            rend.material.SetColor("_Color", Color.yellow);
+        } else if (health > 0)
+        {
+            rend.material.SetColor("_Color", Color.red);
+        } else
+        {
+            Destroy(this.gameObject);
+            gameController.GetComponent<GameController>().killEnemy();
+            StatVariables.money += 20;
+        }
 
         float dist = Vector3.Distance(transform.position, targetTrans.position);
 
         if (dist <= zoneRadius && dist >= 3)
         {
-            //agent.SetDestination(attackTarget.position);
-
             moveToTarget();
         } else
         {
@@ -101,5 +125,10 @@ public class EnemyControl : MonoBehaviour {
         transform.position = Vector3.MoveTowards(transform.position, currentWander, Time.deltaTime * wanderSpeed);
         transform.LookAt(currentWander);
 
+    }
+
+    public void getDamaged(int damage)
+    {
+        health -= damage;
     }
 }

@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: COPIED
+  m_Name: greenFORCE
   m_Shader: {fileID: 4800000, guid: a15f47fc1dff68945bfcd07b5b687331, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
