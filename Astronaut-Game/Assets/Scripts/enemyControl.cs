@@ -25,6 +25,9 @@ public class EnemyControl : MonoBehaviour {
 
     private GameObject gameController;
 
+    public GameObject deadModel;
+
+    private bool isChasing = false;
 
 
 
@@ -58,19 +61,39 @@ public class EnemyControl : MonoBehaviour {
             rend.material.SetColor("_Color", Color.red);
         } else
         {
+
+            /*
+            GameObject deadBrain = Instantiate(deadModel, this.transform.GetChild(0).position, this.transform.GetChild(0).rotation);
+            Rigidbody rb = deadBrain.GetComponent<Rigidbody>();
+            //rb.velocity = this.transform.GetComponent<Rigidbody>().velocity;
+
+            rb.AddForce(transform.forward * 10);
+            */
+
             Destroy(this.gameObject);
+            
+
             gameController.GetComponent<GameController>().killEnemy();
             StatVariables.money += 20;
         }
 
         float dist = Vector3.Distance(transform.position, targetTrans.position);
 
-        if (dist <= zoneRadius && dist >= 3)
+        if (dist <= zoneRadius && dist >= 2.5f)
         {
             moveToTarget();
-        } else
+            if (!isChasing)
+            {
+                GameObject.Find("SoundController").GetComponent<PlanetSounds>().playEnemyChaseSound();
+            }
+            isChasing = true;
+
+        }
+        else
         {
             wander();
+            
+            isChasing = false;
         }
 
         if (dist < 3)

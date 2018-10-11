@@ -140,3 +140,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileExplosion: {fileID: 1687695751767166, guid: daebdd1cd978b5140ac8db7c15fb1b27,
     type: 2}
+  hitSound: {fileID: 8300000, guid: 522b26a1e5cecb041b13899439180fd6, type: 3}

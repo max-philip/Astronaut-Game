@@ -323,6 +323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zoneRadius: 35
   speed: 17
+  deadModel: {fileID: 1330638709872924, guid: 33b0c7c5c82bc49428a8ca2281f3555e, type: 2}
 --- !u!135 &135121276095221176
 SphereCollider:
   m_ObjectHideFlags: 1

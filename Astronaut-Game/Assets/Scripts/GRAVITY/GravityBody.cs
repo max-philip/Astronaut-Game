@@ -15,7 +15,9 @@ public class GravityBody : MonoBehaviour
 
         // Disable rigidbody gravity and rotation as this is simulated in GravityAttractor script
         rigidbody.useGravity = false;
+
         rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+
     }
 
     void FixedUpdate()

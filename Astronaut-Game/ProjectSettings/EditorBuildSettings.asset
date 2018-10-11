@@ -5,9 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/_PRELOAD.unity
-    guid: dee5d3c89a9042042a153c45fc98c748
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Intro.unity
     guid: 53c6f2a144d7c0a459d966e7b3780c40
@@ -15,9 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 34534fcffc80076468f9e8299e4f9c00
   - enabled: 1
-    path: Assets/Scenes/DeathScene.unity
-    guid: 388a5037f0da6104f90d695318b72658
+    path: Assets/Scenes/Tutorial.unity
+    guid: 32e892b4e14cbe147a28975210514326
   - enabled: 1
     path: Assets/Scenes/DesertLevel.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/DeathScene.unity
+    guid: 388a5037f0da6104f90d695318b72658
   m_configObjects: {}

@@ -45,8 +45,12 @@ public class PlayerControl : MonoBehaviour
     Rigidbody rigidbody;
 
 
-    public GameObject projectileTemplate;
+    public GameObject rockProjectile;
+    public GameObject grenadeProjectile;
+    public GameObject pulseProjectile;
 
+
+    private bool painPlayed = false;
 
     void Start()
     {
@@ -65,6 +69,7 @@ public class PlayerControl : MonoBehaviour
         HealthText = GameObject.Find("HealthText").GetComponent<Text>();
         JetText = GameObject.Find("JetText").GetComponent<Text>();
         MoneyText = GameObject.Find("MoneyText").GetComponent<Text>();
+
     }
 
 
@@ -145,7 +150,12 @@ public class PlayerControl : MonoBehaviour
                 }
 
                 fuel -= 2;
-                
+
+                if (fuel < 0)
+                {
+                    fuel = 0;
+                }
+
             }
         }
         else
@@ -161,9 +171,15 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
+        if ((health / StatVariables.maxHealth) < 0.5f && !painPlayed)
+        {
+            GameObject.Find("SoundController").GetComponent<PlanetSounds>().playPain();
+            painPlayed = true;
+        }
+
         if (health <= 0)
         {
-            SceneManager.LoadScene("Scenes/MainMenu");
+            SceneManager.LoadScene("Scenes/DeathScene");
         }
 
         if (rigidbody.velocity.y > 0.05f || rigidbody.velocity.y < -0.05f)
@@ -184,7 +200,18 @@ public class PlayerControl : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject shot = Instantiate(projectileTemplate, this.transform.position + this.transform.forward*3 + this.transform.up, Quaternion.identity);
+            GameObject shot;
+
+            if (StatVariables.weapon == 1)
+            {
+                shot = Instantiate(rockProjectile, this.transform.position + this.transform.forward * 3 + this.transform.up, Quaternion.identity);
+            } else if (StatVariables.weapon == 2)
+            {
+                shot = Instantiate(grenadeProjectile, this.transform.position + this.transform.forward * 3 + this.transform.up, Quaternion.identity);
+            } else
+            {
+                shot = Instantiate(pulseProjectile, this.transform.position + this.transform.forward * 3 + this.transform.up, Quaternion.identity);
+            }
             Rigidbody rb = shot.GetComponent<Rigidbody>();
             rb.velocity = (transform.forward * 23.5f); // + new Vector3(0, verticalLookRotation, 0);
         }

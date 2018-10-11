@@ -60,10 +60,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\HolyShift\Scripts\CheckForStandardAssets.cs" />
+    <Compile Include="Assets\Imported Assets\Almgp_particle_vol_1\script\sprite_sheet.cs" />
+    <Compile Include="Assets\Imported Assets\EffectExamples\Shared\Scripts\DecalDestroyer.cs" />
+    <Compile Include="Assets\Imported Assets\EffectExamples\Shared\Scripts\ExtinguishableFire.cs" />
+    <Compile Include="Assets\Imported Assets\EffectExamples\Shared\Scripts\GunAim.cs" />
+    <Compile Include="Assets\Imported Assets\EffectExamples\Shared\Scripts\GunShoot.cs" />
+    <Compile Include="Assets\Imported Assets\EffectExamples\Shared\Scripts\ParticleCollision.cs" />
+    <Compile Include="Assets\Imported Assets\EffectExamples\Shared\Scripts\ParticleExamples.cs" />
+    <Compile Include="Assets\Imported Assets\EffectExamples\Shared\Scripts\ParticleMenu.cs" />
     <Compile Include="Assets\Imported Assets\fantasySpider\FSP_ContinuousRotation.cs" />
     <Compile Include="Assets\Imported Assets\LOWPOLY\LowPolySurvivalEssentials\LowPolySurvivalEssentials\Example\Scripts\AnimatedFire.cs" />
     <Compile Include="Assets\Imported Assets\Stylized Astronaut\Character\Player.cs" />
     <Compile Include="Assets\Imported Assets\Stylized Astronaut\Character\ThirdPersonCamera.cs" />
+    <Compile Include="Assets\Menu\CurrLoadout.cs" />
     <Compile Include="Assets\Menu\Equipment.cs" />
     <Compile Include="Assets\Menu\MainMenu.cs" />
     <Compile Include="Assets\Menu\MenuController.cs" />
@@ -80,6 +89,8 @@
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\GRAVITY\GravityAttractor.cs" />
     <Compile Include="Assets\Scripts\GRAVITY\GravityBody.cs" />
+    <Compile Include="Assets\Scripts\MenuSounds.cs" />
+    <Compile Include="Assets\Scripts\PlanetSounds.cs" />
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\StatVariables.cs" />
     <Compile Include="Assets\Scripts\sunOrbit.cs" />
@@ -126,6 +137,7 @@
     <None Include="Assets\Shaders\extrudeCOPY.shader" />
     <None Include="Assets\Shaders\rim07COPY.shader" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Anton OFL.txt" />
+    <None Include="Assets\Imported Assets\EffectExamples\Shared\Shaders\SurfaceShader_VC.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\Shaders\WaveShader.shader" />
     <None Include="Assets\HolyShift\readme.txt" />
@@ -137,8 +149,11 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\Imported Assets\LOWPOLY\Desert Pack\Materials\Shaders\Vertex_Color_Basic.shader" />
+    <None Include="Assets\Imported Assets\Almgp_particle_vol_1\shaders\emmision_particle.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\HolyShift\Shaders\WaterInclude.cginc" />
+    <None Include="Assets\Imported Assets\Almgp_particle_vol_1\shaders\multypower_particle.shader" />
+    <None Include="Assets\Imported Assets\Almgp_particle_vol_1\README.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Oswald Bold - OFL.txt" />
@@ -154,8 +169,10 @@
     <None Include="Assets\Imported Assets\LOWPOLY\FreeLowPolyPack\FreeLowPolyPack\readme.txt" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
     <None Include="Assets\Imported Assets\LOWPOLY\LowPolySurvivalEssentials\LowPolyShaders\Shaders\LowPolyPBRShader.shader" />
+    <None Include="Assets\Imported Assets\Almgp_particle_vol_1\shaders\mesh_dissolve_particel.shader" />
     <None Include="Assets\Shaders\rim43COPY.shader" />
     <None Include="Assets\Imported Assets\LOWPOLY\LowPolySurvivalEssentials\LowPolyShaders\Shaders\LowPolyUnlitShader.shader" />
+    <None Include="Assets\Imported Assets\Almgp_particle_vol_1\shaders\face_power_particle.shader" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/Max Philip/Desktop/2018 Semester 2/COMP30019/Project_2/Graphics-Game/Astronaut-Game/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

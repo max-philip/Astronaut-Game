@@ -10,9 +10,14 @@ public class projectileController : MonoBehaviour {
 
     private GameObject gameController;
 
+    //AudioSource audio;
+    //public AudioClip hitSound;
+
     // Use this for initialization
     void Start () {
         gameController = GameObject.Find("GameController");
+
+        //audio = gameObject.AddComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -27,22 +32,54 @@ public class projectileController : MonoBehaviour {
         GameObject explode = Instantiate(projectileExplosion);
         explode.transform.position = this.transform.position;
 
-        if (other.gameObject.tag == "Destructible")
+
+        if (StatVariables.weapon == 1)
         {
+            GameObject.Find("SoundController").GetComponent<PlanetSounds>().playRock();
+        }
+        else if (StatVariables.weapon == 2)
+        {
+            GameObject.Find("SoundController").GetComponent<PlanetSounds>().playGrenade();
+        }
+        else
+        {
+            GameObject.Find("SoundController").GetComponent<PlanetSounds>().playPulse();
+        }
 
-            other.gameObject.GetComponent<EnemyControl>().getDamaged(10);
-
-            // Increase score for tutorial targets here - for BRAIN enemies, this is done in EnemyControl.cs
-            if (SceneManager.GetActiveScene().name == "Tutorial")
+        if (other.gameObject.tag == "Destructible"){
+            if (SceneManager.GetActiveScene().name != "Tutorial")
             {
+                if (StatVariables.weapon == 1)
+                {
+                    other.gameObject.GetComponent<EnemyControl>().getDamaged(10);
+                }
+                else if (StatVariables.weapon == 2)
+                {
+                    other.gameObject.GetComponent<EnemyControl>().getDamaged(20);
+                }
+                else
+                {
+                    other.gameObject.GetComponent<EnemyControl>().getDamaged(40);
+                }
+            }
+            else
+            {
+                // TUTORIAL ONLY
+
                 StatVariables.money += 5;
+                Destroy(other.gameObject);
+                gameController.GetComponent<GameController>().killEnemy();
             }
 
+
+       
+            /*
             if (gameController.GetComponent<GameController>().getEnemyCount() == 0)
             {
                 PlayerControl myControl = GameObject.Find("Stylized Astronaut").GetComponent<PlayerControl>();
                 myControl.cubesCollected = true;
             }
+            */
 
         }
     }

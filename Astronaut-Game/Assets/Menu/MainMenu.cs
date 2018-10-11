@@ -13,11 +13,14 @@ public class MainMenu : MonoBehaviour {
         Cursor.visible = true;
     }
 
-    public void PlayGame()
+    public void PlayDesert()
     {
         SceneManager.LoadScene("Scenes/DesertLevel");
+    }
 
-        //EditorSceneManager.OpenScene("Application.dataPath/Assets/Scenes/TestScene.unity", OpenSceneMode.Additive);
+    public void PlayTutorial()
+    {
+        SceneManager.LoadScene("Scenes/Tutorial");
     }
 
     public void ExitGame()
