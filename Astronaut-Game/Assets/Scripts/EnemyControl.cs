@@ -79,7 +79,7 @@ public class EnemyControl : MonoBehaviour {
 
         float dist = Vector3.Distance(transform.position, targetTrans.position);
 
-        if (dist <= zoneRadius && dist >= 2.5f)
+        if (dist <= zoneRadius && dist >= 2.9f)
         {
             moveToTarget();
             if (!isChasing)

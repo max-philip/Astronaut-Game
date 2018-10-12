@@ -10,7 +10,7 @@ public class StatVariables : MonoBehaviour {
     public static float sprintMulti = 1.5f;
     public static int weapon = 1;
 
-    public static int money = 1000;
+    public static int money = 500;
 
     //public static float value = 100;
 
