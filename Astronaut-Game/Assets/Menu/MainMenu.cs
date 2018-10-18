@@ -18,6 +18,11 @@ public class MainMenu : MonoBehaviour {
         SceneManager.LoadScene("Scenes/DesertLevel");
     }
 
+    public void PlayGrass()
+    {
+        SceneManager.LoadScene("Scenes/GrassLevel");
+    }
+
     public void PlayTutorial()
     {
         SceneManager.LoadScene("Scenes/Tutorial");

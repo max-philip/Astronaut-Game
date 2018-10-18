@@ -12,10 +12,17 @@ public class StatVariables : MonoBehaviour {
 
     public static int money = 500;
 
+    public static string tutorialMins = "";
+    public static string tutorialSec = "";
+    public static string desertMins = "";
+    public static string desertSec = "";
+    public static string grassMins = "";
+    public static string grassSec = "";
+
     //public static float value = 100;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 
 	}
 	

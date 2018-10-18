@@ -55,6 +55,8 @@ public class GameController : MonoBehaviour
         else
         {
             timerText.text = "Time Elapsed:   " + string.Format("{0}:{1}", mins, sec);
+
+            newScore(mins, sec);
         }
 
 
@@ -75,4 +77,65 @@ public class GameController : MonoBehaviour
     {
         countText.text = "Enemies Remaining: " + getEnemyCount();
     }
+
+    private void newScore(string newMin, string newSec)
+    {
+        int myNewMin = Convert.ToInt32(newMin);
+        int myNewSec = Convert.ToInt32(newSec);
+
+
+        if (SceneManager.GetActiveScene().name == "Tutorial")
+        {
+            if (StatVariables.tutorialMins == "" && StatVariables.tutorialSec == "")
+            {
+                StatVariables.tutorialMins = newMin;
+                StatVariables.tutorialSec = newSec;
+            } else
+            {
+                if (((myNewMin < Convert.ToInt32(StatVariables.tutorialMins)) ||
+                (myNewMin == Convert.ToInt32(StatVariables.tutorialMins) && myNewSec < Convert.ToInt32(StatVariables.tutorialSec))))
+                {
+                    StatVariables.tutorialMins = newMin;
+                    StatVariables.tutorialSec = newSec;
+                }
+            }
+        }
+
+        if (SceneManager.GetActiveScene().name == "DesertLevel")
+        {
+            if (StatVariables.desertMins == "" && StatVariables.desertSec == "")
+            {
+                StatVariables.desertMins = newMin;
+                StatVariables.desertSec = newSec;
+            }
+            else
+            {
+                if (((myNewMin < Convert.ToInt32(StatVariables.desertMins)) ||
+                (myNewMin == Convert.ToInt32(StatVariables.desertMins) && myNewSec < Convert.ToInt32(StatVariables.desertSec))))
+                {
+                    StatVariables.desertMins = newMin;
+                    StatVariables.desertSec = newSec;
+                }
+            }
+        }
+
+        if (SceneManager.GetActiveScene().name == "GrassLevel")
+        {
+            if (StatVariables.grassMins == "" && StatVariables.grassSec == "")
+            {
+                StatVariables.grassMins = newMin;
+                StatVariables.grassSec = newSec;
+            }
+            else
+            {
+                if (((myNewMin < Convert.ToInt32(StatVariables.grassSec)) ||
+                (myNewMin == Convert.ToInt32(StatVariables.grassMins) && myNewSec < Convert.ToInt32(StatVariables.grassSec))))
+                {
+                    StatVariables.grassMins = newMin;
+                    StatVariables.grassSec = newSec;
+                }
+            }
+        }
+    }
+
 }
