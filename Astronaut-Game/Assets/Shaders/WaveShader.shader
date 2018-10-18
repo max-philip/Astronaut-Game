@@ -48,8 +48,8 @@ Shader "Unlit/WaveShader"
 				vertOut o;
 
 				// Amplitude and frequency values for the waves
-				float amp = 1.1;
-				float freq = 0.7;
+				float amp = 0.1;
+				float freq = 1;
 
 				// Displace the original vertex in model space
 				v.vertex.y = sin((v.vertex.x + _Time.y) * freq) * amp;

@@ -206,6 +206,7 @@
     <None Include="Assets\jonas imported\LowpolySimpleHouse\PostProcessing\Resources\Shaders\ACES.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\Shaders\SnowShader.shader" />
     <None Include="Assets\jonas imported\LowpolySimpleHouse\PostProcessing\Resources\Shaders\UberSecondPass.cginc" />
     <None Include="Assets\Imported Assets\LOWPOLY\Desert Pack\Materials\Shaders\Vertex_Color_Basic.shader" />
     <None Include="Assets\jonas imported\LowpolySimpleHouse\PostProcessing\Resources\Shaders\Tonemapping.cginc" />
@@ -235,7 +236,6 @@
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-    <None Include="Assets\Shaders\waterCOPY.shader" />
     <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\jonas imported\LowpolySimpleHouse\PostProcessing\Resources\Shaders\Bloom.cginc" />
     <None Include="Assets\jonas imported\LowpolySimpleHouse\PostProcessing\Resources\Shaders\TAA.shader" />
@@ -256,6 +256,7 @@
     <None Include="Assets\jonas imported\BOXOPHOBIC\Skybox Cubemap Extended\Shaders\Skybox Cubemap Extended.shader" />
     <None Include="Assets\jonas imported\LowpolySimpleHouse\PostProcessing\Editor Resources\Monitors\VectorscopeRender.shader" />
     <None Include="Assets\jonas imported\LowpolySimpleHouse\PostProcessing\Resources\Shaders\EyeAdaptation.shader" />
+    <None Include="Assets\Shaders\demo76COPY.shader" />
     <None Include="Assets\jonas imported\LowpolySimpleHouse\PostProcessing\Resources\Shaders\ColorGrading.cginc" />
     <None Include="Assets\jonas imported\LowpolySimpleHouse\PostProcessing\Resources\Shaders\AmbientOcclusion.cginc" />
     <None Include="Assets\jonas imported\LowpolySimpleHouse\PostProcessing\Editor Resources\Monitors\WaveformCompute.compute" />
