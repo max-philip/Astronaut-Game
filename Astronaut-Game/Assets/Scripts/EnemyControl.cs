@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class EnemyControl : MonoBehaviour {
 
     public float zoneRadius = 20f;
     public float speed = 8f;
 
-    NavMeshAgent agent;
-    //public Transform attackTarget;
     GameObject attackTarget;
     Transform targetTrans;
 
@@ -21,7 +20,7 @@ public class EnemyControl : MonoBehaviour {
     Vector3 currentWander = new Vector3(0, -60, 0);
     float changeDirectionTime = 0.0f;
 
-    private int health = 30;
+    private int health = 50;
 
     private GameObject gameController;
 
@@ -30,11 +29,9 @@ public class EnemyControl : MonoBehaviour {
     private bool isChasing = false;
 
 
-
     // Use this for initialization
     void Start () {
 
-        agent = this.GetComponent<NavMeshAgent>();
         rigidbody = this.GetComponent<Rigidbody>();
 
         attackTarget = GameObject.Find("StylizedAstronaut");
@@ -42,44 +39,57 @@ public class EnemyControl : MonoBehaviour {
 
         gameController = GameObject.Find("GameController");
 
+
     }
 
     // Update is called once per frame
     void Update () {
 
-        Renderer rend = GetComponent<Renderer>();
-        //rend.material.shader = Shader.Find("_Color");
-
-        if (health >= 30)
+        
+        if (gameController.GetComponent<GameController>().getEnemyCount() <= 6)
         {
-            rend.material.SetColor("_Color", Color.green);
-        } else if (health >= 15)
-        {
-            rend.material.SetColor("_Color", Color.yellow);
-        } else if (health > 0)
-        {
-            rend.material.SetColor("_Color", Color.red);
+            this.zoneRadius = 125.0f;
         } else
         {
+            this.zoneRadius = 35.0f;
+        }
 
-            /*
-            GameObject deadBrain = Instantiate(deadModel, this.transform.GetChild(0).position, this.transform.GetChild(0).rotation);
-            Rigidbody rb = deadBrain.GetComponent<Rigidbody>();
-            //rb.velocity = this.transform.GetComponent<Rigidbody>().velocity;
 
-            rb.AddForce(transform.forward * 10);
-            */
+        Renderer rend = GetComponent<Renderer>();
+
+        if (health >= 50)
+        {
+            rend.material.SetColor("_Color", Color.green);
+        }
+        else if (health >= 40)
+        {
+            rend.material.SetColor("_Color", Color.yellow);
+        }
+        else if (health >= 30)
+        {
+            rend.material.SetColor("_Color", Color.yellow);
+        }
+        else if (health >= 20)
+        {
+            rend.material.SetColor("_Color", Color.yellow);
+        }
+        else if (health > 0)
+        {
+            rend.material.SetColor("_Color", Color.red);
+        }
+        else
+        {
+            
 
             Destroy(this.gameObject);
             
-
             gameController.GetComponent<GameController>().killEnemy();
             StatVariables.money += 20;
         }
 
         float dist = Vector3.Distance(transform.position, targetTrans.position);
 
-        if (dist <= zoneRadius && dist >= 2.9f)
+        if (dist <= zoneRadius && dist > 3.15f)
         {
             moveToTarget();
             if (!isChasing)
@@ -96,7 +106,7 @@ public class EnemyControl : MonoBehaviour {
             isChasing = false;
         }
 
-        if (dist < 3)
+        if (dist < 3.15f)
         {
             GameObject.Find("StylizedAstronaut").GetComponent<PlayerControl>().reduceHealth(1);
             Debug.Log("damage");
@@ -122,11 +132,7 @@ public class EnemyControl : MonoBehaviour {
                                         new Vector3(60, 0, 0), new Vector3(-60, 0, 0),
                                         new Vector3(0, 0, 60), new Vector3(0, 0, -60)};
 
-        
-        /*
-        Vector3[] AIwanders = new Vector3[] { transform.forward*3, transform.right*3,
-                                        -transform.forward*3, -transform.right*3 };
-        */
+       
 
         float wanderSpeed;
         float wanderDist = Vector3.Distance(transform.position, currentWander);

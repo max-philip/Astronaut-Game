@@ -17,6 +17,11 @@ public class GameController : MonoBehaviour
     private float timer = 0.0f;
     private Text timerText;
 
+    private string mins;
+    private string sec;
+
+    public GameObject victoryUI;
+
     // Use this for initialization
     void Start()
     {
@@ -26,7 +31,6 @@ public class GameController : MonoBehaviour
         countText = GameObject.Find("CountText").GetComponent<Text>();
         timerText = GameObject.Find("TimerText").GetComponent<Text>();
 
-        
     }
 
     // Update is called once per frame
@@ -44,18 +48,18 @@ public class GameController : MonoBehaviour
         }
 
         //timer += Time.deltaTime;
-        string mins = Mathf.Floor(timer / 60).ToString("00");
-        string sec = (timer % 60).ToString("00");
+        mins = Mathf.Floor(timer / 60).ToString("00");
+        sec = (timer % 60).ToString("00");
 
         if (enemies > 0)
         {
             timer += Time.deltaTime;
-            timerText.text = "Time Elapsed:   " + string.Format("{0}:{1}", mins, sec);
+            timerText.text = "TIME ELAPSED:   " + string.Format("{0}:{1}", mins, sec);
         }
         else
         {
-            timerText.text = "Time Elapsed:   " + string.Format("{0}:{1}", mins, sec);
-
+            timerText.text = "TIME ELAPSED:   " + string.Format("{0}:{1}", mins, sec);
+            victoryUI.SetActive(true);
             newScore(mins, sec);
         }
 
@@ -75,7 +79,12 @@ public class GameController : MonoBehaviour
 
     private void setCountText()
     {
-        countText.text = "Enemies Remaining: " + getEnemyCount();
+        countText.text = "ENEMIES REMAINING: " + getEnemyCount();
+    }
+
+    public string getCurrTime()
+    {
+        return string.Format("{0}:{1}", mins, sec);
     }
 
     private void newScore(string newMin, string newSec)
@@ -119,7 +128,7 @@ public class GameController : MonoBehaviour
             }
         }
 
-        if (SceneManager.GetActiveScene().name == "GrassLevel")
+        if (SceneManager.GetActiveScene().name == "TerraLevel")
         {
             if (StatVariables.grassMins == "" && StatVariables.grassSec == "")
             {

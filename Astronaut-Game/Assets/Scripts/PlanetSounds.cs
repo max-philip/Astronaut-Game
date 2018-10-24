@@ -52,7 +52,11 @@ public class PlanetSounds : MonoBehaviour {
 
     public void playEnemyChaseSound()
     {
-        audio.PlayOneShot(chase);
+        if (!audio.isPlaying)
+        {
+            audio.PlayOneShot(chase);
+
+        }
     }
 
 

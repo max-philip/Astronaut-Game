@@ -3,24 +3,18 @@ using System.Collections;
 using System;
 using System.Threading;
 using System;
-//using System.Diagnostics;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(GravityBody))]
 public class PlayerControl : MonoBehaviour
 {
 
     private CharacterController myController;
     private Animator anim;
     private Vector3 moveDirection = Vector3.zero;
-    public float turnSpeed = 10.0f;
 
-
-    //private Stopwatch watch = new Stopwatch();
     private Text timerText;
-    public bool cubesCollected = false;
 
     private float health = StatVariables.maxHealth;
     private float fuel = StatVariables.maxFuel;
@@ -28,7 +22,7 @@ public class PlayerControl : MonoBehaviour
     private Text JetText;
     private Text MoneyText;
 
-    // public vars
+
     public float mouseSensitivityX = 1;
     public float mouseSensitivityY = 1;
     public float speed = 6;
@@ -36,7 +30,6 @@ public class PlayerControl : MonoBehaviour
     public float levForce = 5;
     public LayerMask groundedMask;
 
-    // System vars
     bool grounded;
     Vector3 moveAmount;
     Vector3 smoothMoveVelocity;
@@ -44,32 +37,27 @@ public class PlayerControl : MonoBehaviour
     Transform cameraTransform;
     Rigidbody rigidbody;
 
-
+    // projectile objects
     public GameObject rockProjectile;
     public GameObject grenadeProjectile;
     public GameObject pulseProjectile;
 
-
+    // boolean flags for
     private bool painPlayed = false;
+    private bool isJetting = false;
 
     void Start()
     {
         cameraTransform = Camera.main.transform;
         rigidbody = GetComponent<Rigidbody>();
 
-
-
         anim = GetComponent<Animator>();
-        //myController = GetComponent<CharacterController>();
-
 
         timerText = GameObject.Find("TimerText").GetComponent<Text>();
-        //watch.Start();
 
         HealthText = GameObject.Find("HealthText").GetComponent<Text>();
         JetText = GameObject.Find("JetText").GetComponent<Text>();
         MoneyText = GameObject.Find("MoneyText").GetComponent<Text>();
-
     }
 
 
@@ -80,14 +68,6 @@ public class PlayerControl : MonoBehaviour
         if (PauseMenu.gamePaused)
         {
             return;
-        }
-
-        if (!cubesCollected)
-        {
-            //timerText.text = "Time Elapsed: " + (watch.Elapsed).ToString();
-        } else
-        {
-            //watch.Stop();
         }
 
         // Look rotation:
@@ -106,97 +86,6 @@ public class PlayerControl : MonoBehaviour
             cameraTransform.localEulerAngles =
             new Vector3(distFromOrigin, cameraTransform.localEulerAngles.y, cameraTransform.localEulerAngles.z);
         }
-
-        // Calculate movement:
-        float inputX = Input.GetAxisRaw("Horizontal");
-        float inputY = Input.GetAxisRaw("Vertical");
-
-        
-        if (inputY != 0f || inputX != 0f)
-        {
-            anim.SetInteger("AnimationPar", 1);
-        } else
-        {
-            anim.SetInteger("AnimationPar", 0);
-        }
-
-        //transform.Rotate(0, inputX * turnSpeed * Time.deltaTime, 0);
-
-        // sprint movement
-        float moveSpeed;
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            moveSpeed = speed * shiftMulti;
-        } else
-        {
-            moveSpeed = speed; 
-        }
-
-        Vector3 moveDir = new Vector3(inputX, 0, inputY).normalized;
-        Vector3 targetMoveAmount = moveDir * moveSpeed;
-        moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVelocity, .15f);
-
-        if (Input.GetKey(KeyCode.Space))
-        {
-            
-            if (fuel > 0)
-            {
-                if (SceneManager.GetActiveScene().name != "Tutorial")
-                {
-                    rigidbody.AddForce(transform.up * levForce);
-                } else
-                {
-                    rigidbody.AddForce(transform.up * levForce * 1.2f);
-                }
-
-                fuel -= 2;
-
-                if (fuel < 0)
-                {
-                    fuel = 0;
-                }
-
-            }
-        }
-        else
-        {
-            if (fuel < StatVariables.maxFuel)
-            {
-                fuel += 3;
-            }
-
-            if (fuel > StatVariables.maxFuel)
-            {
-                fuel = StatVariables.maxFuel;
-            }
-        }
-
-        if ((health / StatVariables.maxHealth) < 0.5f && !painPlayed)
-        {
-            GameObject.Find("SoundController").GetComponent<PlanetSounds>().playPain();
-            painPlayed = true;
-        }
-
-        if (health <= 0)
-        {
-            SceneManager.LoadScene("Scenes/DeathScene");
-        }
-
-        if (rigidbody.velocity.y > 0.05f || rigidbody.velocity.y < -0.05f)
-        {
-            anim.SetInteger("AnimationPar", 2);
-            if (Input.GetMouseButtonDown(1))
-            {
-                anim.SetInteger("AnimationPar", 3);
-            }
-        }
-
-        /*
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            rigidbody.AddForce(transform.up * jumpForce);
-        }
-        */
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -226,9 +115,9 @@ public class PlayerControl : MonoBehaviour
 
     private void writeHUD()
     {
-        HealthText.text = "Health:   " + health.ToString() + " / " + StatVariables.maxHealth.ToString();
-        JetText.text = "Fuel:   " + fuel.ToString() + " / " + StatVariables.maxFuel.ToString();
-        MoneyText.text = "Money:   " + StatVariables.money.ToString();
+        HealthText.text = "HEALTH:   " + health.ToString() + " / " + StatVariables.maxHealth.ToString();
+        JetText.text = "FUEL:   " + ((int) fuel).ToString() + " / " + StatVariables.maxFuel.ToString();
+        MoneyText.text = "MONEY:  $" + StatVariables.money.ToString();
     }
 
     void FixedUpdate()
@@ -236,5 +125,103 @@ public class PlayerControl : MonoBehaviour
         // Apply movement to rigidbody
         Vector3 localMove = transform.TransformDirection(moveAmount) * Time.fixedDeltaTime;
         rigidbody.MovePosition(rigidbody.position + localMove);
+
+        isJetting = false;
+        if (Input.GetKey(KeyCode.Space))
+        {
+
+            if (fuel > 0)
+            {
+                if (SceneManager.GetActiveScene().name != "Tutorial")
+                {
+                    rigidbody.velocity += transform.up * 0.4f;
+                }
+                else
+                {
+                    rigidbody.velocity += transform.up * 0.3f;
+                }
+
+                isJetting = true;
+
+                fuel -= 1;
+
+                if (fuel < 0)
+                {
+                    fuel = 0;
+                }
+
+            }
+        }
+        else
+        {
+            isJetting = false;
+
+            if (fuel < StatVariables.maxFuel)
+            {
+                fuel += 0.5f;
+            }
+
+            if (fuel > StatVariables.maxFuel)
+            {
+                fuel = StatVariables.maxFuel;
+            }
+        }
+
+
+        // Calculate movement:
+        float inputX = Input.GetAxisRaw("Horizontal");
+        float inputY = Input.GetAxisRaw("Vertical");
+
+
+        if (inputY != 0f || inputX != 0f)
+        {
+            anim.SetInteger("AnimationPar", 1);
+        }
+        else
+        {
+            anim.SetInteger("AnimationPar", 0);
+        }
+
+        // sprint movement
+        float moveSpeed;
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            moveSpeed = speed * shiftMulti;
+        }
+        else
+        {
+            moveSpeed = speed;
+        }
+
+        Vector3 moveDir = new Vector3(inputX, 0, inputY).normalized;
+        Vector3 targetMoveAmount = moveDir * moveSpeed;
+        moveAmount = Vector3.SmoothDamp(moveAmount, targetMoveAmount, ref smoothMoveVelocity, .15f);
+
+
+        if ((health / StatVariables.maxHealth) < 0.5f && !painPlayed)
+        {
+            GameObject.Find("SoundController").GetComponent<PlanetSounds>().playPain();
+            painPlayed = true;
+        }
+
+        if (health <= 0)
+        {
+            SceneManager.LoadScene("Scenes/DeathScene");
+        }
+
+        if (rigidbody.velocity.y > 0.05f || rigidbody.velocity.y < -0.05f)
+        {
+            anim.SetInteger("AnimationPar", 2);
+            if (Input.GetMouseButtonDown(1))
+            {
+                anim.SetInteger("AnimationPar", 3);
+            }
+        }
+    }
+
+
+    public bool getIsJetting()
+    {
+        return isJetting;
     }
 }

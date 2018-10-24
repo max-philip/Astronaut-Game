@@ -1,6 +1,10 @@
-﻿// Shader to give the effect of clear waves. The solution provided for Lab 4 of
-// COMP30019, Semester 2 2018 was used as a base. Parameters changed to suit the
+﻿// Shader to give the effect of clear waves. The solution provided for Lab 4, as well as
+// our water shader for Project 1, was used as a base. Parameters changed to suit the
 // desired wave effect.
+
+// Wave calculation changed to model the Gerstner wave function, rather than just a sin
+// wave. This gives a more visually appealing effect. Further changes were made to
+// parameters such as texture tint to suit the environment.
 
 // Clear water effect was achieved with reference to the official Unity tutorial: 
 // "Making A Transparent Shader".
@@ -48,11 +52,15 @@ Shader "Unlit/WaveShader"
 				vertOut o;
 
 				// Amplitude and frequency values for the waves
-				float amp = 0.1;
+				float amp = 0.15;
 				float freq = 1;
 
+				// Gerstner wave calculation
+				v.vertex.y = sin(v.vertex.x + _Time.y)  * amp;
+				v.vertex.x += cos(v.vertex.x + _Time.y) * amp * 0.5;
+				v.vertex.z += cos(v.vertex.x + _Time.y) * amp * 0.5;
+
 				// Displace the original vertex in model space
-				v.vertex.y = sin((v.vertex.x + _Time.y) * freq) * amp;
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.uv = v.uv;
 				return o;
